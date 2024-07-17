@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaction time tester</title>
+    <style>
+        #shape 
+        {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            background-color: pink;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Reaction tester Project</h1>
+    <p>Click the box as soon as possible to see your reaction time.</p>
+    <button id="end">Click here to end</button>
+    <p id="para">Color: Pink</p>
+    <p id="ans">Time are: </p>
+    <div id="shape"></div>
+    <script>
+        var start = new Date().getTime();
+        document.getElementById("shape").onclick = function() {
+            var end = new Date().getTime();
+            var left = Math.floor(Math.random() * 300) + "px";
+            var top = Math.floor(Math.random() * 300) + "px";
+            document.getElementById("shape").style.left = left;
+            document.getElementById("shape").style.top = top;
+            var color = "#";
+            var valuesofcolor = "0123456789ABCDEF";
+            for(var i=0; i<6; i++)
+            {
+                var randomnum = Math.floor(Math.random()*15) + 1;
+                color = color + valuesofcolor[randomnum];
+            }
+            document.getElementById("shape").style.backgroundColor = color;
+            document.getElementById("para").innerHTML = "The color is: " + color;
+            var a = (end-start)/1000;
+            document.getElementById("ans").innerHTML = document.getElementById("ans").innerHTML + " " + a;
+            start = new Date().getTime();
+            document.getElementById("end").onclick = function() 
+            {
+                document.getElementById("shape").style.display = "none";
+                document.getElementById("para").style.display = "none";
+            }
+        }
+        
+    </script>
+</body>
+</html>
